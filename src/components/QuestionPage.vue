@@ -1,34 +1,32 @@
 // FaqList.vue
 <template>
-  <!-- FAQ 容器：設置最大寬度並置中 -->
   <div class="faq-container">
-    <!-- 遍歷 FAQ 列表，為每個項目創建一個卡片 -->
     <div
       class="faq-item"
       v-for="(item, index) in faqList"
       :key="index"
-      :class="{ 'is-open': item.isOpen }"
     >
-      <!-- 問題區域：包含問題文本和切換按鈕 -->
       <div class="faq-question" @click="toggleFaq(index)">
         <div class="question-content">
-          <!-- 序號徽章 -->
           <span class="question-number">{{ index + 1 }}</span>
-          <!-- 問題文本 -->
           <span class="question-text">{{ item.question }}</span>
         </div>
-        <!-- 自定義加減號圖標 -->
+        <!-- 優化加減號動畫 -->
         <div class="toggle-icon" :class="{ 'is-open': item.isOpen }">
           <span class="icon-line"></span>
           <span class="icon-line"></span>
         </div>
       </div>
-      <!-- 答案區域：使用 transition 組件實現動畫效果 -->
-      <transition name="fade">
-        <div class="faq-answer" v-if="item.isOpen">
+      <!-- 使用 v-show 替代 v-if 來保持 DOM 結構 -->
+      <div
+        class="faq-answer"
+        :class="{ 'is-open': item.isOpen }"
+        v-show="item.isOpen"
+      >
+        <div class="answer-content">
           <p>{{ item.answer }}</p>
         </div>
-      </transition>
+      </div>
     </div>
   </div>
 </template>
@@ -36,12 +34,11 @@
 <script setup>
 import { ref } from 'vue'
 
-// FAQ 數據列表
 const faqList = ref([
   {
     question: '申請塔位使用時，需要準備哪些資料？',
     answer: '需要準備申請人身份證明文件、戶籍證明等相關文件',
-    isOpen: false  // 控制展開/收起狀態
+    isOpen: false
   },
   {
     question: '如何選擇塔位坐向？',
@@ -60,58 +57,52 @@ const faqList = ref([
   }
 ])
 
-// 切換 FAQ 項目的展開/收起狀態
 const toggleFaq = (index) => {
   faqList.value = faqList.value.map((item, i) => ({
     ...item,
-    isOpen: i === index ? !item.isOpen : false  // 點擊的項目切換狀態，其他項目收起
+    isOpen: i === index ? !item.isOpen : false
   }))
 }
 </script>
 
 <style scoped>
-/* 主容器樣式 */
 .faq-container {
   max-width: 800px;
   margin: 2rem auto;
   padding: 0 20px;
 }
 
-/* FAQ 項目卡片樣式 */
 .faq-item {
   background: #ffffff;
-  border-radius: 12px;  /* 圓角效果 */
+  border-radius: 12px;
   margin-bottom: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);  /* 陰影效果 */
-  transition: all 0.3s ease;  /* 過渡動畫 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden; /* 確保內容不會溢出 */
 }
 
-/* 卡片懸停效果 */
 .faq-item:hover {
-  transform: translateY(-2px);  /* 輕微上浮 */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);  /* 更深的陰影 */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-/* 問題區域樣式 */
 .faq-question {
   padding: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  user-select: none;  /* 防止文字被選中 */
+  user-select: none;
 }
 
-/* 問題內容布局 */
 .question-content {
   display: flex;
   align-items: center;
-  gap: 1rem;  /* 序號和文字之間的間距 */
+  gap: 1rem;
 }
 
-/* 序號圓形徽章樣式 */
 .question-number {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);  /* 漸變背景 */
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   color: white;
   width: 28px;
   height: 28px;
@@ -123,79 +114,76 @@ const toggleFaq = (index) => {
   font-weight: 500;
 }
 
-/* 問題文字樣式 */
 .question-text {
   font-size: 1.1rem;
   color: #1f2937;
   font-weight: 500;
 }
 
-/* 加減號圖標容器 */
+/* 優化加減號動畫 */
 .toggle-icon {
   position: relative;
   width: 20px;
   height: 20px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 加減號圖標的線條 */
-.icon-line {
+.toggle-icon .icon-line {
   position: absolute;
-  background-color: #6366f1;  /* 圖標顏色 */
+  background-color: #6366f1;
   height: 2px;
   width: 100%;
+  left: 0;
   top: 50%;
-  transform: translateY(-50%);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 垂直線條（形成加號） */
-.icon-line:last-child {
+.toggle-icon .icon-line:first-child {
+  transform: translateY(-50%);
+}
+
+.toggle-icon .icon-line:last-child {
   transform: translateY(-50%) rotate(90deg);
 }
 
-/* 當展開時，垂直線條旋轉為水平（形成減號） */
 .toggle-icon.is-open .icon-line:last-child {
   transform: translateY(-50%) rotate(0);
 }
 
-/* 答案區域樣式 */
+/* 優化答案區域動畫 */
 .faq-answer {
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.faq-answer.is-open {
+  max-height: 500px; /* 設置一個足夠大的值 */
+  opacity: 1;
+}
+
+.answer-content {
   padding: 0 1.5rem 1.5rem;
   color: #4b5563;
   line-height: 1.6;
 }
 
-.faq-answer p {
+.answer-content p {
   margin: 0;
 }
 
-/* 展開/收起動畫效果 */
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.3s ease;
-  max-height: 200px;
-  opacity: 1;
-  overflow: hidden;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  max-height: 0;
-  opacity: 0;
-}
-
-/* 響應式設計：適配移動端 */
 @media (max-width: 640px) {
   .faq-container {
     padding: 0 1rem;
   }
 
   .question-text {
-    font-size: 1rem;  /* 移動端字體稍小 */
+    font-size: 1rem;
   }
 
   .faq-question {
-    padding: 1.2rem;  /* 移動端內邊距稍小 */
+    padding: 1.2rem;
   }
 }
 </style>
