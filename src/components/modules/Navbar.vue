@@ -24,6 +24,9 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/contact">聯絡我們</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/question">相關問題Q&A</router-link>
+          </li>
         </ul>
       </div>
     </div>

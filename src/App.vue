@@ -7,10 +7,10 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import Navbar from './components/Navbar.vue'
+import Navbar from './components/modules/Navbar.vue'
 import Carousel from "./components/Carousel.vue";
 import Footer from "./components/Footer.vue";
-import ThreeColumn from "./components/ThreeColumn.vue";
+import ThreeColumn from "./components/modules/ThreeColumn.vue";
 import FeaturePic from "./components/modules/FeaturePic.vue";
 import HomePage from "./components/HomePage.vue";
 

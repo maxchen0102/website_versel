@@ -9,7 +9,7 @@
 
 <script setup>
 import Carousel from "../components/Carousel.vue";
-import ThreeColumn from "../components/ThreeColumn.vue";
+import ThreeColumn from "./modules/ThreeColumn.vue";
 import FeaturePic from "../components/modules/FeaturePic.vue";
 
 </script>
