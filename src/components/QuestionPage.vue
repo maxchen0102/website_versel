@@ -6,7 +6,7 @@
 //import YoutubeGrid from "./modules/YoutubeGrid.vue";
 // import ContactUsWithGoogleMap from "./contact_us_page_modules/ContactUsWithGoogleMap.vue";
 //import Contact_us from "./contact_us_page_modules/Contact_us.vue";
-import Banner_Service from "./banner/Banner_Service.vue";
+import Banner_Service from "./content/ServiceListAndPicture.vue";
 
 </script>
 
