@@ -113,21 +113,16 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ContactInfo',
-  data() {
-    return {
-      clinicImage: 'https://placehold.co/500x500', // 使用預設佔位圖片
-    }
-  },
-  methods: {
-    handleImageError(e) {
-      // 如果圖片載入失敗，可以設置一個預設圖片
-      e.target.src = '/placeholder-image.jpg'
-    }
-  }
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const clinicImage = ref('https://placehold.co/500x500')
+
+const handleImageError = (e: Event) => {
+  const target = e.target as HTMLImageElement
+  target.src = '/placeholder-image.jpg'
 }
+
 </script>
 
 <style scoped>
