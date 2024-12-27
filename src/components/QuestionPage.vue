@@ -6,12 +6,12 @@
 //import YoutubeGrid from "./modules/YoutubeGrid.vue";
 // import ContactUsWithGoogleMap from "./contact_us_page_modules/ContactUsWithGoogleMap.vue";
 //import Contact_us from "./contact_us_page_modules/Contact_us.vue";
-import Banner_Service from "./content/ServiceListAndPicture.vue";
-
+//import Banner_Service from "./content/ServiceListAndPicture.vue";
+import AuthenticationIntro from "./content/AuthenticationIntro.vue";
 </script>
 
 <template>
-  <Banner_Service/>
+  <AuthenticationIntro/>
 
 </template>
 
