@@ -13,12 +13,13 @@
 //import Experience from "./Profile/Experience.vue";
 //import ProductIntro from "./Product/ProductIntroList.vue";
 //import ProductionIntroArticle from "./Product/ProductionIntroArticle.vue";
-import ProductDetail from "./Product/ProductDetail.vue";
+//import ProductDetail from "./Product/ProductDetail.vue";
+import AllProductPage from "./Product/AllProductPage.vue";
 
 </script>
 
 <template>
-  <ProductDetail/>
+  <AllProductPage/>
 
 </template>
 
