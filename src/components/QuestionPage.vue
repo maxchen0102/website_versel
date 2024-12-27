@@ -9,12 +9,14 @@
 //import Banner_Service from "./content/ServiceListAndPicture.vue";
 //import AuthenticationIntro from "./content/AuthenticationIntro.vue";
 //import OnePicture from "./content/OnePicture.vue";
-import PersonalIntro from "./Profile/PersonalIntro.vue";
+//import PersonalIntro from "./Profile/PersonalIntro.vue";
+//import Experience from "./Profile/Experience.vue";
+import ProductIntro from "./Product/ProductIntroList.vue";
 
 </script>
 
 <template>
-  <PersonalIntro/>
+  <ProductIntro/>
 
 </template>
 
