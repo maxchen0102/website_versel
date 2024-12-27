@@ -11,12 +11,13 @@
 //import OnePicture from "./content/OnePicture.vue";
 //import PersonalIntro from "./Profile/PersonalIntro.vue";
 //import Experience from "./Profile/Experience.vue";
-import ProductIntro from "./Product/ProductIntroList.vue";
+//import ProductIntro from "./Product/ProductIntroList.vue";
+import ProductionIntroArticle from "./Product/ProductionIntroArticle.vue";
 
 </script>
 
 <template>
-  <ProductIntro/>
+  <ProductionIntroArticle/>
 
 </template>
 
