@@ -1,3 +1,4 @@
+<!-- Navbar.vue -->
 <template>
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
@@ -5,38 +6,64 @@
       <router-link class="navbar-brand" to="/">Logo</router-link>
 
       <!-- 漢堡選單按鈕 -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        ref="navbarToggler"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <!-- 導航項目 -->
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div
+        class="collapse navbar-collapse"
+        id="navbarNav"
+        ref="navbarCollapse"
+      >
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <router-link class="nav-link" to="/">首頁</router-link>
+            <router-link class="nav-link" to="/" @click="closeMenu">首頁</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/about">關於</router-link>
+            <router-link class="nav-link" to="/about" @click="closeMenu">關於</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/service">服務</router-link>
+            <router-link class="nav-link" to="/service" @click="closeMenu">服務</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/contact">聯絡我們</router-link>
+            <router-link class="nav-link" to="/contact" @click="closeMenu">聯絡我們</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/question">相關問題Q&A</router-link>
+            <router-link class="nav-link" to="/question" @click="closeMenu">相關問題Q&A</router-link>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
+  <!-- 添加導航欄間隔元素 -->
+  <div class="navbar-spacer"></div>
 </template>
 
 <script setup>
-// 監聽滾動事件
-import { onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+import { Collapse } from 'bootstrap'
 
+// 參考到 DOM 元素
+const navbarCollapse = ref(null)
+const navbarToggler = ref(null)
+let bsCollapse = null
+
+// 關閉選單方法
+const closeMenu = () => {
+  if (bsCollapse && window.innerWidth < 992) {
+    bsCollapse.hide()
+  }
+}
+
+// 監聽滾動事件
 const handleScroll = () => {
   const navbar = document.querySelector('.navbar')
   if (window.scrollY > 50) {
@@ -47,6 +74,13 @@ const handleScroll = () => {
 }
 
 onMounted(() => {
+  // 初始化 Bootstrap collapse
+  if (navbarCollapse.value) {
+    bsCollapse = new Collapse(navbarCollapse.value, {
+      toggle: false
+    })
+  }
+
   window.addEventListener('scroll', handleScroll)
 })
 
@@ -56,11 +90,16 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+.navbar-spacer {
+  height: 76px;
+}
+
 .navbar {
   padding: 1rem 2rem;
   background-color: rgba(255, 255, 255, 0.98);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  z-index: 1000;
 }
 
 .navbar.scrolled {
@@ -106,7 +145,6 @@ onUnmounted(() => {
   width: 80%;
 }
 
-/* 響應式選單按鈕樣式 */
 .navbar-toggler {
   border: none;
   padding: 0.5rem;
@@ -116,8 +154,11 @@ onUnmounted(() => {
   box-shadow: none;
 }
 
-/* 手機版樣式調整 */
 @media (max-width: 991.98px) {
+  .navbar-spacer {
+    height: 68px;
+  }
+
   .navbar-collapse {
     background-color: white;
     padding: 1rem;
@@ -128,10 +169,18 @@ onUnmounted(() => {
 
   .nav-link {
     padding: 0.8rem 1.2rem !important;
+    text-align: center;
   }
 
   .nav-link::after {
     display: none;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .navbar {
+    position: -webkit-sticky;
+    position: sticky;
   }
 }
 </style>

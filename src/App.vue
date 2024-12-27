@@ -6,7 +6,7 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import Navbar from './components/modules/Navbar.vue'
+import Navbar from './components/navbar/Navbar.vue'
 import Carousel from "./components/Carousel.vue";
 import Footer from "./components/Footer.vue";
 import ThreeColumn from "./components/modules/ThreeColumn.vue";
