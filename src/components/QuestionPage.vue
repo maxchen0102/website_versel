@@ -8,12 +8,13 @@
 //import Contact_us from "./contact_us_page_modules/Contact_us.vue";
 //import Banner_Service from "./content/ServiceListAndPicture.vue";
 //import AuthenticationIntro from "./content/AuthenticationIntro.vue";
-import OnePicture from "./content/OnePicture.vue";
+//import OnePicture from "./content/OnePicture.vue";
+import PersonalIntro from "./Profile/PersonalIntro.vue";
 
 </script>
 
 <template>
-  <OnePicture/>
+  <PersonalIntro/>
 
 </template>
 
