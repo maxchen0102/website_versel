@@ -7,11 +7,13 @@
 // import ContactUsWithGoogleMap from "./contact_us_page_modules/ContactUsWithGoogleMap.vue";
 //import Contact_us from "./contact_us_page_modules/Contact_us.vue";
 //import Banner_Service from "./content/ServiceListAndPicture.vue";
-import AuthenticationIntro from "./content/AuthenticationIntro.vue";
+//import AuthenticationIntro from "./content/AuthenticationIntro.vue";
+import OnePicture from "./content/OnePicture.vue";
+
 </script>
 
 <template>
-  <AuthenticationIntro/>
+  <OnePicture/>
 
 </template>
 
