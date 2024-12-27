@@ -1,8 +1,7 @@
 <template>
   <Navbar/>
   <router-view/>
-  <Footer/>
-
+  <FooterDesign/>
 </template>
 
 <script>
@@ -13,6 +12,8 @@ import Footer from "./components/Footer.vue";
 import ThreeColumn from "./components/modules/ThreeColumn.vue";
 import FeaturePic from "./components/modules/FeaturePic.vue";
 import HomePage from "./components/HomePage.vue";
+import FooterNormal from "./components/footers/FooterNormal.vue";
+import FooterDesign from "./components/footers/FooterDesign.vue";
 
 export default {
   name: 'App',
@@ -23,7 +24,10 @@ export default {
     Footer,
     ThreeColumn,
     FeaturePic,
-    HomePage
+    HomePage,
+    FooterNormal,
+    FooterDesign
+
   }
 }
 </script>
