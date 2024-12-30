@@ -10,9 +10,9 @@
 
     </div>
   </div>
-</template>ㄌ
+</template>
 
-<script setup>ㄌ
+<script setup>
 // Component logic can be added here if needed
 import { ref } from 'vue'
 
