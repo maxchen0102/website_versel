@@ -42,13 +42,10 @@
             <!-- 產品卡片 -->
             <div v-for="product in filteredProducts"
                  :key="product.id"
-                 class="col-md-6 col-lg-4 d-flex">
+                 class="col-6 col-md-6 col-lg-4 d-flex">
               <div class="product-card w-100">
                 <div class="product-image">
                   <img :src="product.image" :alt="product.name" class="img-fluid">
-                  <div class="product-overlay">
-                    <button class="btn btn-light btn-sm">查看詳情</button>
-                  </div>
                   <!-- 產品標籤 -->
                   <div class="product-tags">
                     <span v-for="tag in product.tags"
@@ -63,6 +60,10 @@
                   <h3 class="product-title">{{ product.name }}</h3>
                   <p class="product-subtitle">{{ product.subtitle }}</p>
                   <p v-if="product.flavor" class="product-flavor">{{ product.flavor }}</p>
+                  <!-- 新增查看詳情按鈕 -->
+                  <div class="product-action">
+                    <a :href="getProductDetailUrl(product.id)" class="btn btn-primary w-100">查看詳情</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -76,8 +77,21 @@
 <script setup>
 import { ref, computed } from 'vue'
 
+// 產品數據
+import { products } from './ProductsData.js'
+
 // 選中的分類
 const selectedCategory = ref('all')
+
+// 路由基礎路徑配置
+const baseRoutes = {
+  productDetail: '#/product/' // 這裡可以根據實際路由配置修改
+}
+
+// 獲取產品詳情頁面URL的方法
+const getProductDetailUrl = (productId) => {
+  return `${baseRoutes.productDetail}${productId}`
+}
 
 // 分類數據
 const categories = [
@@ -88,259 +102,6 @@ const categories = [
   { id: 'equipment', name: '器械儀器設備' }
 ]
 
-// 產品數據
-const products = [
-  // 植體相關產品
-  {
-    id: 1,
-    name: 'NeoGen® PTFE membrane',
-    subtitle: '衛部醫器輸字第032501號',
-    image: 'https://picsum.photos/400/300?random=1',
-    tags: ['熱銷', '植體相關'],
-    categoryId: 'implant'
-  },
-  {
-    id: 2,
-    name: 'Implant Driver Kit',
-    subtitle: '衛部醫器輸字第032502號',
-    image: 'https://picsum.photos/400/300?random=2',
-    tags: ['新品', '植體相關'],
-    categoryId: 'implant'
-  },
-  {
-    id: 3,
-    name: 'Healing Abutment',
-    subtitle: '衛部醫器輸字第032503號',
-    image: 'https://picsum.photos/400/300?random=3',
-    tags: ['植體相關'],
-    categoryId: 'implant'
-  },
-  {
-    id: 4,
-    name: 'Tissue Punch',
-    subtitle: '衛部醫器輸字第032504號',
-    image: 'https://picsum.photos/400/300?random=4',
-    tags: ['植體相關', '熱銷'],
-    categoryId: 'implant'
-  },
-  {
-    id: 5,
-    name: 'Surgical Kit',
-    subtitle: '衛部醫器輸字第032505號',
-    image: 'https://picsum.photos/400/300?random=5',
-    tags: ['植體相關', '新品'],
-    categoryId: 'implant'
-  },
-  {
-    id: 6,
-    name: 'Implant Analog',
-    subtitle: '衛部醫器輸字第032506號',
-    image: 'https://picsum.photos/400/300?random=6',
-    tags: ['植體相關'],
-    categoryId: 'implant'
-  },
-
-  // 口腔保健產品
-  {
-    id: 7,
-    name: 'Profluorid Varnish',
-    subtitle: '衛署醫器輸字第024794號',
-    flavor: '哈密瓜/焦糖/櫻桃/薄荷/熱帶水果',
-    image: 'https://picsum.photos/400/300?random=7',
-    tags: ['口腔保健', '熱銷'],
-    categoryId: 'oral'
-  },
-  {
-    id: 8,
-    name: 'GC Tooth Mousse',
-    subtitle: '衛署醫器輸字第024795號',
-    image: 'https://picsum.photos/400/300?random=8',
-    tags: ['口腔保健', '新品'],
-    categoryId: 'oral'
-  },
-  {
-    id: 9,
-    name: 'MI Paste Plus',
-    subtitle: '衛署醫器輸字第024796號',
-    image: 'https://picsum.photos/400/300?random=9',
-    tags: ['口腔保健'],
-    categoryId: 'oral'
-  },
-  {
-    id: 10,
-    name: 'Fluoride Gel',
-    subtitle: '衛署醫器輸字第024797號',
-    image: 'https://picsum.photos/400/300?random=10',
-    tags: ['口腔保健', '熱銷'],
-    categoryId: 'oral'
-  },
-  {
-    id: 11,
-    name: 'Tooth Cleaning Kit',
-    subtitle: '衛署醫器輸字第024798號',
-    image: 'https://picsum.photos/400/300?random=11',
-    tags: ['口腔保健'],
-    categoryId: 'oral'
-  },
-  {
-    id: 12,
-    name: 'Dental Floss Pro',
-    subtitle: '衛署醫器輸字第024799號',
-    image: 'https://picsum.photos/400/300?random=12',
-    tags: ['口腔保健', '新品'],
-    categoryId: 'oral'
-  },
-
-  // 牙體復形產品
-  {
-    id: 13,
-    name: 'BEAUTIFIL Flow Plus X F00',
-    subtitle: '衛部醫器輸字第032507號',
-    image: 'https://picsum.photos/400/300?random=13',
-    tags: ['熱銷', '牙體復形'],
-    categoryId: 'dental'
-  },
-  {
-    id: 14,
-    name: 'Universal Bond',
-    subtitle: '衛部醫器輸字第032508號',
-    image: 'https://picsum.photos/400/300?random=14',
-    tags: ['新品', '牙體復形'],
-    categoryId: 'dental'
-  },
-  {
-    id: 15,
-    name: 'Composite Resin',
-    subtitle: '衛部醫器輸字第032509號',
-    image: 'https://picsum.photos/400/300?random=15',
-    tags: ['牙體復形'],
-    categoryId: 'dental'
-  },
-  {
-    id: 16,
-    name: 'Glass Ionomer',
-    subtitle: '衛部醫器輸字第032510號',
-    image: 'https://picsum.photos/400/300?random=16',
-    tags: ['牙體復形', '熱銷'],
-    categoryId: 'dental'
-  },
-  {
-    id: 17,
-    name: 'Temporary Filling',
-    subtitle: '衛部醫器輸字第032511號',
-    image: 'https://picsum.photos/400/300?random=17',
-    tags: ['牙體復形'],
-    categoryId: 'dental'
-  },
-  {
-    id: 18,
-    name: 'Core Build-up',
-    subtitle: '衛部醫器輸字第032512號',
-    image: 'https://picsum.photos/400/300?random=18',
-    tags: ['牙體復形', '新品'],
-    categoryId: 'dental'
-  },
-
-  // 根管治療產品
-  {
-    id: 19,
-    name: 'NiTi Files',
-    subtitle: '衛部醫器輸字第032513號',
-    image: 'https://picsum.photos/400/300?random=19',
-    tags: ['根管治療', '熱銷'],
-    categoryId: 'root'
-  },
-  {
-    id: 20,
-    name: 'Root Canal Sealer',
-    subtitle: '衛部醫器輸字第032514號',
-    image: 'https://picsum.photos/400/300?random=20',
-    tags: ['根管治療', '新品'],
-    categoryId: 'root'
-  },
-  {
-    id: 21,
-    name: 'Gutta Percha',
-    subtitle: '衛部醫器輸字第032515號',
-    image: 'https://picsum.photos/400/300?random=21',
-    tags: ['根管治療'],
-    categoryId: 'root'
-  },
-  {
-    id: 22,
-    name: 'Paper Points',
-    subtitle: '衛部醫器輸字第032516號',
-    image: 'https://picsum.photos/400/300?random=22',
-    tags: ['根管治療'],
-    categoryId: 'root'
-  },
-  {
-    id: 23,
-    name: 'Irrigation Solution',
-    subtitle: '衛部醫器輸字第032517號',
-    image: 'https://picsum.photos/400/300?random=23',
-    tags: ['根管治療', '熱銷'],
-    categoryId: 'root'
-  },
-  {
-    id: 24,
-    name: 'Apex Locator Tips',
-    subtitle: '衛部醫器輸字第032518號',
-    image: 'https://picsum.photos/400/300?random=24',
-    tags: ['根管治療', '新品'],
-    categoryId: 'root'
-  },
-
-  // 器械儀器設備
-  {
-    id: 25,
-    name: 'EYESPECIAL C-V',
-    subtitle: '數位預約介紹試用',
-    image: 'https://picsum.photos/400/300?random=25',
-    tags: ['新品', '器械儀器'],
-    categoryId: 'equipment'
-  },
-  {
-    id: 26,
-    name: 'Digital X-Ray',
-    subtitle: '衛部醫器輸字第032519號',
-    image: 'https://picsum.photos/400/300?random=26',
-    tags: ['器械儀器', '熱銷'],
-    categoryId: 'equipment'
-  },
-  {
-    id: 27,
-    name: 'Dental Chair Unit',
-    subtitle: '衛部醫器輸字第032520號',
-    image: 'https://picsum.photos/400/300?random=27',
-    tags: ['器械儀器'],
-    categoryId: 'equipment'
-  },
-  {
-    id: 28,
-    name: 'Autoclave Sterilizer',
-    subtitle: '衛部醫器輸字第032521號',
-    image: 'https://picsum.photos/400/300?random=28',
-    tags: ['器械儀器', '新品'],
-    categoryId: 'equipment'
-  },
-  {
-    id: 29,
-    name: 'Ultrasonic Scaler',
-    subtitle: '衛部醫器輸字第032522號',
-    image: 'https://picsum.photos/400/300?random=29',
-    tags: ['器械儀器', '熱銷'],
-    categoryId: 'equipment'
-  },
-  {
-    id: 30,
-    name: 'Curing Light LED',
-    subtitle: '衛部醫器輸字第032523號',
-    image: 'https://picsum.photos/400/300?random=30',
-    tags: ['器械儀器'],
-    categoryId: 'equipment'
-  }
-]
 
 // 選擇分類方法
 const selectCategory = (categoryId) => {
@@ -503,10 +264,24 @@ const getTagClass = (tag) => {
 
 .product-card:hover .product-overlay {
   opacity: 1;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* 增加陰影效果 */
 }
 
 .product-card:hover .product-image img {
   transform: scale(1.1);
+}
+
+/* 增加標題顏色變化效果 */
+.product-card:hover .product-title {
+  color: #4dabf7; /* 使用與按鈕相同的藍色 */
+}
+
+/* 增加按鈕懸浮效果 */
+.product-card:hover .btn-primary {
+  background-color: #3793dd;
+  border-color: #3793dd;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(77, 171, 247, 0.2);
 }
 
 .product-info {
@@ -536,10 +311,75 @@ const getTagClass = (tag) => {
   margin-top: auto;
 }
 
+/* 產品操作區域樣式 */
+.product-action {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.product-action .btn {
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.product-action .btn-primary {
+  background-color: #4dabf7;
+  border-color: #4dabf7;
+}
+
+.product-action .btn-primary:hover {
+  background-color: #3793dd;
+  border-color: #3793dd;
+  transform: translateY(-2px);
+}
+
 /* 響應式調整 */
 @media (max-width: 991.98px) {
   .category-sidebar {
     margin-bottom: 2rem;
+  }
+}
+
+/* 手機版樣式調整 */
+@media (max-width: 767.98px) {
+  .product-action {
+    padding-top: 0.75rem;
+  }
+
+  .product-action .btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .product-info {
+    padding: 0.75rem;
+  }
+
+  .product-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .product-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .product-tag {
+    padding: 2px 6px;
+    font-size: 0.7rem;
+  }
+
+  .product-flavor {
+    font-size: 0.75rem;
+  }
+
+  .product-tags {
+    top: 5px;
+    left: 5px;
+    gap: 3px;
   }
 }
 
@@ -557,5 +397,6 @@ const getTagClass = (tag) => {
 
 .product-card {
   animation: fadeIn 0.5s ease forwards;
+   transition: all 0.3s ease; /* 修改為 all 使所有效果都有過渡 */
 }
 </style>
