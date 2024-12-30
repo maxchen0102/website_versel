@@ -15,10 +15,14 @@
 //import ProductionIntroArticle from "./Product/ProductionIntroArticle.vue";
 //import ProductDetail from "./Product/ProductDetail.vue";
 import AllProductPage from "./Product/AllProductPage.vue";
+//import SocialMedia from "./Layout/SocialMedia.vue";
+import SocialMediaOnlyLine from "./Layout/SocialMediaOnlyLine.vue";
+
 
 </script>
 
 <template>
+  <SocialMediaOnlyLine/>
   <AllProductPage/>
 
 </template>
