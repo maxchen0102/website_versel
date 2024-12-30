@@ -10,9 +10,27 @@
         </h1>
       </div>
 
-      <div class="row">
-        <!-- 左側分類欄 -->
-        <div class="col-lg-3">
+        <div class="row">
+        <!-- 左側分類欄 - 手機版下拉選單 -->
+        <div class="d-lg-none mb-4">
+          <select
+            class="form-select category-dropdown"
+            v-model="selectedCategory"
+          >
+            <option value="all">所有產品</option>
+            <option
+              v-for="category in categories"
+              :key="category.id"
+              :value="category.id"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
+
+       <!-- 左側分類欄 - 桌面版列表 -->
+
+        <div class="col-lg-3 d-none d-lg-block">
           <div class="category-sidebar">
             <!-- 分類列表 -->
             <div class="category-list">
@@ -398,5 +416,25 @@ const getTagClass = (tag) => {
 .product-card {
   animation: fadeIn 0.5s ease forwards;
    transition: all 0.3s ease; /* 修改為 all 使所有效果都有過渡 */
+}
+
+<style scoped>
+/* 新增下拉選單樣式 */
+.category-dropdown {
+  padding: 0.8rem 1rem;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  background-color: white;
+  font-size: 1rem;
+  color: #495057;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+  width: 100%;
+  cursor: pointer;
+}
+
+.category-dropdown:focus {
+  border-color: #4dabf7;
+  box-shadow: 0 0 0 0.25rem rgba(77, 171, 247, 0.25);
+  outline: none;
 }
 </style>
