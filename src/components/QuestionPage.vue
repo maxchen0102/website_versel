@@ -14,16 +14,16 @@
 //import ProductIntro from "./Product/ProductIntroList.vue";
 //import ProductionIntroArticle from "./Product/ProductionIntroArticle.vue";
 //import ProductDetail from "./Product/ProductDetail.vue";
-import AllProductPage from "./Product/AllProductPage.vue";
+// import AllProductPage from "./Product/AllProductPage.vue";
 //import SocialMedia from "./Layout/SocialMedia.vue";
-import SocialMediaOnlyLine from "./Layout/SocialMediaOnlyLine.vue";
+// import SocialMediaOnlyLine from "./Layout/SocialMediaOnlyLine.vue";
+import test from "./test.vue";
 
 
 </script>
 
 <template>
-  <SocialMediaOnlyLine/>
-  <AllProductPage/>
+  <test />
 
 </template>
 
