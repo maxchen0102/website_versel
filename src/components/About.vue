@@ -12,7 +12,7 @@
 <script setup>
 import SixCardBlock from "../components/modules/SixCardBlock.vue";
 import StatsCards from "../components/modules/StatsCards.vue";
-import FeaturePic from "../components/modules/FeaturePic.vue";
+import FeaturePic from "./PictureAndWord/FeaturePic.vue";
 
 </script>
 

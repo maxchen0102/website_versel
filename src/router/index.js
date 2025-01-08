@@ -4,9 +4,16 @@ import HomaPage from '../components/HomePage.vue'
 import About from '../components/About.vue'
 import Service from "../components/Service.vue";
 import QuestionPage from "../components/QuestionPage.vue";
+import test from "../components/test.vue";
 
 
 const routes = [
+  {
+    path: '/test',
+    name: 'test',
+    component: test
+
+  },
   {
     path:'/contact',
     name:'contact',

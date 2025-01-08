@@ -1,4 +1,3 @@
-<!-- Footer.vue -->
 <template>
   <footer class="bg-dark text-light py-4 mt-auto">
     <div class="container">
@@ -6,7 +5,10 @@
         <!-- 公司信息 -->
         <div class="col-md-4 mb-3 mb-md-0">
           <h5 class="mb-3">關於我們</h5>
-          <p class="mb-0">我們致力於提供最優質的服務與產品，為客戶創造價值。</p>
+          <p class="mb-4">我們致力於提供最優質的服務與產品，為客戶創造價值。</p>
+          <h5>辦公時間</h5>
+          <p class="mb-1">周一到週五：上午九點～下午六點</p>
+          <p class="mb-4">週六、週日：公休</p>
         </div>
 
         <!-- 快速連結 -->

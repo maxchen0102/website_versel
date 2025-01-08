@@ -1,4 +1,3 @@
-<!-- Footer.vue -->
 <template>
   <footer class="modern-footer">
     <div class="footer-background">

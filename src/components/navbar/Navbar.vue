@@ -38,6 +38,9 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/question" @click="closeMenu">相關問題Q&A</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/test" @click="closeMenu">客戶版面選擇</router-link>
+          </li>
         </ul>
       </div>
     </div>
