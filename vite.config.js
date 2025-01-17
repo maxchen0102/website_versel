@@ -8,14 +8,24 @@ export default defineConfig({
   base: '/',
   plugins: [
       vue(),
-    VitePWA({
-      registerType: 'autoUpdate',
+       VitePWA({
+      // 应用清单
       manifest: {
-        name: '您的應用名稱',
-        short_name: '短名稱',
-        theme_color: '#ffffff',
-        display: 'standalone', // 這會隱藏瀏覽器的網址列
-        start_url: '/'
+        name: 'Vite PWA',
+        short_name: 'Vite',
+        description: 'Vite PWA APP',
+        theme_color: '#ccc',
+
+      },
+      // 注册ws方式
+      injectRegister: 'auto',
+      // 设置缓存资源
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,jpg,jpeg}']
+      },
+      //dev环境也开启pwa
+      devOptions: {
+        enabled: true
       }
     })
   ],

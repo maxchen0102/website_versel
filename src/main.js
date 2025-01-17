@@ -7,6 +7,9 @@ import 'animate.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
+import { useRegisterSW } from 'virtual:pwa-register/vue';
+useRegisterSW();
+
 // google maps
 //import VueGoogleMaps from '@fawmi/vue-google-maps'
 
