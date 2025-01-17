@@ -1,5 +1,5 @@
 {
- "display": "standalone",
+ "display": "fullscreen",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
