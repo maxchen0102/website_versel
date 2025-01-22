@@ -14,7 +14,7 @@
   <!-- 輪播內容 -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://fakeimg.pl/1200x800/000000/" class="d-block w-100" alt="...">
+      <img src="https://fakeimg.pl/1200x400/000000/" class="d-block w-100" alt="...">
           <div class="carousel-caption text-start">
             <h1>Example headline.</h1>
             <p class="opacity-75">Some representative placeholder content for the first slide of the carousel.</p>
@@ -22,7 +22,7 @@
           </div>
     </div>
     <div class="carousel-item">
-      <img src="https://fakeimg.pl/1200x800/000000/" class="d-block w-100" alt="...">
+      <img src="https://fakeimg.pl/1200x400/000000/" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
             <h1>Another example headline.</h1>
             <p>Some representative placeholder content for the second slide of the carousel.</p>
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="carousel-item">
-      <img src="https://fakeimg.pl/1200x800/000000/" class="d-block w-100" alt="...">
+      <img src="https://fakeimg.pl/1200x400/000000/" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>First slide label</h5>
         <p>Some representative placeholder content for the first slide.</p>
