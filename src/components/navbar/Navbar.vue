@@ -54,14 +54,30 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { Collapse } from 'bootstrap'
 
+
 // 參考到 DOM 元素
 const navbarCollapse = ref(null)
 const navbarToggler = ref(null)
 let bsCollapse = null
 
+
+
 // 關閉選單方法
 const closeMenu = () => {
   if (bsCollapse && window.innerWidth < 992) {
+    bsCollapse.hide()
+  }
+}
+
+// 監聽點擊事件，當點擊外部時關閉選單
+const handleOutsideClick = (event) => {
+  if (
+    bsCollapse &&
+    window.innerWidth < 992 &&
+    navbarCollapse.value &&
+    !navbarCollapse.value.contains(event.target) &&
+    !navbarToggler.value.contains(event.target)
+  ) {
     bsCollapse.hide()
   }
 }
@@ -85,10 +101,12 @@ onMounted(() => {
   }
 
   window.addEventListener('scroll', handleScroll)
+  document.addEventListener('click', handleOutsideClick)
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  document.removeEventListener('click', handleOutsideClick)
 })
 </script>
 
