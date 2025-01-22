@@ -2,7 +2,6 @@
 
 <template>
   <!-- 輪播區域 -->
-  <div class="navbar-spacer"></div>
 <div id="carouselExample" class="carousel slide">
    <!-- 頁面指示器 -->
     <div class="carousel-indicators">
